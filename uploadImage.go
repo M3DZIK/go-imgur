@@ -29,7 +29,7 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 		return nil, -1, err
 	}
 
-	req.Header.Add("Authorization", "Client-ID "+client.ImgurClientID)
+	req.Header.Add("Authorization", "Client-ID "+client.Imgur.ClientID)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err := client.HTTPClient.Do(req)

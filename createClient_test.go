@@ -7,7 +7,7 @@ import (
 func createClient(httpClient *http.Client, imgurClientID string) *Client {
 	client := new(Client)
 	client.HTTPClient = httpClient
-	client.ImgurClientID = imgurClientID
+	client.Imgur.ClientID = imgurClientID
 
 	return client
 }
