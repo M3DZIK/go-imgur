@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -12,6 +13,7 @@ import (
 	"strings"
 )
 
+// Upload Image to Imgur
 func (client *Client) UploadImage(img string, dtype string, album string) (*ImageInfoData, int, error) {
 	form := url.Values{}
 
@@ -29,7 +31,7 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 		return nil, -1, err
 	}
 
-	req.Header.Add("Authorization", "Client-ID "+client.Imgur.ClientID)
+	req.Header.Add("Authorization", fmt.Sprintf("Client-ID %s", client.Imgur.ClientID))
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err := client.HTTPClient.Do(req)
@@ -53,7 +55,7 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 	}
 
 	if !i.Success {
-		return nil, i.Status, errors.New("Upload to Imgur Failed with Status: " + strconv.Itoa(i.Status))
+		return nil, i.Status, errors.New("Imgur Failed with Status: " + strconv.Itoa(i.Status))
 	}
 
 	i.Data.IDExt = strings.Replace(i.Data.Link, "https://i.imgur.com/", "", -1)
@@ -61,10 +63,12 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 	return &i, i.Status, nil
 }
 
+// Upload Image to Imgur by URL
 func (client *Client) UploadImageFromURL(imgUrl string, album string) (*ImageInfoData, int, error) {
 	return client.UploadImage(imgUrl, "url", album)
 }
 
+// Upload Image to Imgur by File
 func (client *Client) UploadImageFromFile(path string, album string) (*ImageInfoData, int, error) {
 	f, err := os.Open(path)
 	if err != nil {

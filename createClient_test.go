@@ -4,10 +4,13 @@ import (
 	"net/http"
 )
 
-func createClient(httpClient *http.Client, imgurClientID string) *Client {
-	client := new(Client)
-	client.HTTPClient = httpClient
-	client.Imgur.ClientID = imgurClientID
+func createClient(httpClient *http.Client, imgurClientID string) Client {
+	var client = Client{
+		HTTPClient: httpClient,
+		Imgur: Imgur{
+			ClientID: imgurClientID,
+		},
+	}
 
 	return client
 }

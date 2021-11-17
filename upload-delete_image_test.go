@@ -6,10 +6,9 @@ import (
 	"testing"
 )
 
-var imgsDeleteHash []string
+var imgDeleteHashs []string
 
-//* Upload
-
+// Upload image from URL
 func TestUploadImageFromURL(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 
@@ -21,9 +20,10 @@ func TestUploadImageFromURL(t *testing.T) {
 		t.FailNow()
 	}
 
-	imgsDeleteHash = append(imgsDeleteHash, i.Data.Deletehash)
+	imgDeleteHashs = append(imgDeleteHashs, i.Data.Deletehash)
 }
 
+// Upload image from File
 func TestUploadImageFromFile(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 
@@ -35,17 +35,16 @@ func TestUploadImageFromFile(t *testing.T) {
 		t.FailNow()
 	}
 
-	imgsDeleteHash = append(imgsDeleteHash, i.Data.Deletehash)
+	imgDeleteHashs = append(imgDeleteHashs, i.Data.Deletehash)
 }
 
-//* Delete
-
+// Delete images
 func TestDeleteImages(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 
 	client := createClient(new(http.Client), key)
 
-	for _, v := range imgsDeleteHash {
+	for _, v := range imgDeleteHashs {
 		_, _, err := client.DeleteImageUnAuthed(v)
 		if err != nil {
 			t.Error("DeleteImageUnAuthed() Failed with Error:", err)

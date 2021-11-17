@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
@@ -25,7 +26,7 @@ func (client *Client) DeleteImageUnAuthed(hash string) (*ImageInfoWithoutData, i
 		return nil, -1, err
 	}
 
-	req.Header.Add("Authorization", "Client-ID "+client.Imgur.ClientID)
+	req.Header.Add("Authorization", fmt.Sprintf("Client-ID %s", client.Imgur.ClientID))
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 
 	res, err := client.HTTPClient.Do(req)
@@ -70,7 +71,7 @@ func (client *Client) DeleteImageAuthed(id string) (*ImageInfoWithoutData, int, 
 		return nil, -1, err
 	}
 
-	req.Header.Add("Authorization", "Bearer "+client.Imgur.AccessToken)
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", client.Imgur.AccessToken))
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 
 	res, err := client.HTTPClient.Do(req)
