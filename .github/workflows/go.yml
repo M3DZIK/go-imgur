@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -38,11 +38,22 @@ jobs:
         IMGUR_CLIENT_SECRET: ${{ secrets.IMGUR_CLIENT_SECRET }}
         IMGUR_REFRESH_TOKEN: ${{ secrets.IMGUR_REFRESH_TOKEN }}
 
-    - name: Semantic Release
-      if: github.event_name != 'pull_request'
-      uses: go-semantic-release/action@v1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  semantic-release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      - name: Semantic Release
+        if: github.event_name != 'pull_request'
+        uses: go-semantic-release/action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-initial-development-versions: true
 
   lint:
     runs-on: ubuntu-latest
