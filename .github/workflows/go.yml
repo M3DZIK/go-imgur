@@ -41,7 +41,7 @@ jobs:
           go-version: 1.17
 
       - name: Setup Git
-        if: github.github.ref == 'main'
+        if: github.ref == 'main'
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -59,11 +59,11 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "gofmt"
 
       - name: Pull changes
-        if: github.github.ref == 'main'
+        if: github.ref == 'main'
         run: git pull -r
 
       - name: Push changes
-        if: github.github.ref == 'main'
+        if: github.ref == 'main'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
