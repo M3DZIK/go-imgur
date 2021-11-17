@@ -10,6 +10,8 @@ type Client struct {
 type Imgur struct {
 	// Imgur Client-ID
 	ClientID string
-	// Imgur Bearer Token
+	// Imgur Client Secret
+	ClientSecret string
+
 	AccessToken string
 }
