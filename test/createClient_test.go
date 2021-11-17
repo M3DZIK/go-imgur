@@ -10,7 +10,7 @@ func createClient(httpClient *http.Client, imgurClientID string, imgurClientSecr
 	var client = imgur.Client{
 		HTTPClient: httpClient,
 		Imgur: imgur.Imgur{
-			ClientID: imgurClientID,
+			ClientID:     imgurClientID,
 			ClientSecret: imgurClientSecret,
 		},
 	}
