@@ -31,7 +31,7 @@ func TestGenerateAccessToken(t *testing.T) {
 
 	_, err := client.GenerateAccessToken(refresh)
 	if err != nil {
-		t.Error("TestGenerateAccessToken() Failed with Error:", err)
+		t.Error(err)
 		t.FailNow()
 	}
 }

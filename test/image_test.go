@@ -17,7 +17,7 @@ func TestUploadImageFromURL(t *testing.T) {
 
 	i, _, err := client.UploadImageFromURL("https://golang.org/doc/gopher/fiveyears.jpg", "")
 	if err != nil {
-		t.Error("UploadImageFromFile() Failed with Error:", err)
+		t.Error(err)
 		t.FailNow()
 	}
 
@@ -31,7 +31,7 @@ func TestUploadImageFromURL2(t *testing.T) {
 
 	i, _, err := client.UploadImageFromURL("https://golang.org/doc/gopher/fiveyears.jpg", "")
 	if err != nil {
-		t.Error("UploadImageFromFile() Failed with Error:", err)
+		t.Error(err)
 		t.FailNow()
 	}
 
@@ -46,11 +46,26 @@ func TestUploadImageFromFile(t *testing.T) {
 
 	i, _, err := client.UploadImageFromFile("../test_data/fiveyears.jpg", "")
 	if err != nil {
-		t.Error("UploadImageFromFile() Failed with Error:", err)
+		t.Error(err)
 		t.FailNow()
 	}
 
 	imgDeleteHashs = append(imgDeleteHashs, i.Data.Deletehash)
+}
+
+// Delete images Authed
+func TestDeleteImagesAuthed(t *testing.T) {
+	client, err := generateAccessToken()
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+
+	_, _, err = client.DeleteImageAuthed(imgID)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
 }
 
 // Delete images UnAuthed
@@ -62,23 +77,8 @@ func TestDeleteImagesUnAuthed(t *testing.T) {
 	for _, v := range imgDeleteHashs {
 		_, _, err := client.DeleteImageUnAuthed(v)
 		if err != nil {
-			t.Error("DeleteImageUnAuthed() Failed with Error:", err)
+			t.Error(err)
 			t.FailNow()
 		}
-	}
-}
-
-// Delete images Authed
-func TestDeleteImagesAuthed(t *testing.T) {
-	client, err := generateAccessToken()
-	if err != nil {
-		t.Error("DeleteImageUnAuthed() 1. Failed with Error:", err)
-		t.FailNow()
-	}
-
-	_, _, err = client.DeleteImageAuthed(imgID)
-	if err != nil {
-		t.Error("DeleteImageUnAuthed() 2. Failed with Error:", err)
-		t.FailNow()
 	}
 }
