@@ -25,6 +25,7 @@ type AccessTokenResponse struct {
 	Username string `json:"account_username"`
 }
 
+// Generate Access Token (Bearer)
 func (client *Client) GenerateAccessToken(refreshToken string) (*AccessTokenResponse, error) {
 	form := url.Values{}
 

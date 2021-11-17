@@ -1,4 +1,4 @@
-package imgur
+package test
 
 import (
 	"net/http"
