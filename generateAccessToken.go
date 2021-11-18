@@ -26,6 +26,7 @@ type AccessTokenResponse struct {
 }
 
 // Generate Access Token (Bearer)
+//	res, err := client.GenerateAccessToken("abc")
 func (client *Client) GenerateAccessToken(refreshToken string) (*AccessTokenResponse, error) {
 	form := url.Values{}
 

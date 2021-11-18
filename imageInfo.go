@@ -12,6 +12,8 @@ import (
 	"strings"
 )
 
+// Get Image Info from Imgur
+//	info, status, err := client.GetImageInfo("abc")
 func (client *Client) GetImageInfo(imageID string) (*ImageInfoData, int, error) {
 	form := url.Values{}
 

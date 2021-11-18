@@ -11,6 +11,8 @@ import (
 	"strconv"
 )
 
+// Delete Image from Ingur using Client-ID
+//	info, status, err := DeleteImageUnAuthed("deleteHash")
 func (client *Client) DeleteImageUnAuthed(hash string) (*ImageInfoWithoutData, int, error) {
 	URL := "https://api.imgur.com/3/image/" + hash
 
@@ -56,6 +58,8 @@ func (client *Client) DeleteImageUnAuthed(hash string) (*ImageInfoWithoutData, i
 	return &i, i.Status, nil
 }
 
+// Delete Image from Ingur using Bearer
+//	info, status, err := DeleteImageAuthed("abc")
 func (client *Client) DeleteImageAuthed(id string) (*ImageInfoWithoutData, int, error) {
 	URL := "https://api.imgur.com/3/image/" + id
 

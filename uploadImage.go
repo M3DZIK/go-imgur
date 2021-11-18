@@ -14,6 +14,7 @@ import (
 )
 
 // Upload Image to Imgur
+//	info, status, err := client.UploadImage("https://abc/img", "url", "abc")
 func (client *Client) UploadImage(img string, dtype string, album string) (*ImageInfoData, int, error) {
 	form := url.Values{}
 
@@ -64,11 +65,13 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 }
 
 // Upload Image to Imgur by URL
+//	info, status, err := client.UploadImageFromURL("https://abc/img", "")
 func (client *Client) UploadImageFromURL(imgUrl string, album string) (*ImageInfoData, int, error) {
 	return client.UploadImage(imgUrl, "url", album)
 }
 
 // Upload Image to Imgur by File
+//	info, status, err := client.UploadImageFromURL("path/to/img", "")
 func (client *Client) UploadImageFromFile(path string, album string) (*ImageInfoData, int, error) {
 	f, err := os.Open(path)
 	if err != nil {
