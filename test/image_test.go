@@ -9,7 +9,6 @@ import (
 var imgDeleteHashs []string
 var imgID string
 
-// Upload image from URL
 func TestUploadImageFromURL(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 
@@ -38,13 +37,12 @@ func TestUploadImageFromURL2(t *testing.T) {
 	imgID = i.Data.ID
 }
 
-// Upload image from File
 func TestUploadImageFromFile(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 
 	client := createClient(new(http.Client), key, "")
 
-	i, _, err := client.UploadImageFromFile("../test_data/fiveyears.jpg", "")
+	i, _, err := client.UploadImageFromFile("test_data/fiveyears.jpg", "")
 	if err != nil {
 		t.Error(err)
 		t.FailNow()
@@ -53,7 +51,18 @@ func TestUploadImageFromFile(t *testing.T) {
 	imgDeleteHashs = append(imgDeleteHashs, i.Data.Deletehash)
 }
 
-// Delete images Authed
+func TestGetImageInfo(t *testing.T) {
+	key := os.Getenv("IMGUR_CLIENT_ID")
+
+	client := createClient(new(http.Client), key, "")
+
+	_, _, err := client.GetImageInfo(imgID)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+}
+
 func TestDeleteImagesAuthed(t *testing.T) {
 	client, err := generateAccessToken()
 	if err != nil {
@@ -68,7 +77,6 @@ func TestDeleteImagesAuthed(t *testing.T) {
 	}
 }
 
-// Delete images UnAuthed
 func TestDeleteImagesUnAuthed(t *testing.T) {
 	key := os.Getenv("IMGUR_CLIENT_ID")
 

@@ -21,7 +21,6 @@ func generateAccessToken() (imgur.Client, error) {
 	return client, err
 }
 
-// Upload image from URL
 func TestGenerateAccessToken(t *testing.T) {
 	id := os.Getenv("IMGUR_CLIENT_ID")
 	secret := os.Getenv("IMGUR_CLIENT_SECRET")
