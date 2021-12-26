@@ -1,0 +1,8 @@
+image: medzik/gitpod:full
+
+checkoutLocation: "go/src/imgur"
+workspaceLocation: "go/src/imgur"
+
+vscode:
+  extensions:
+    - golang.go

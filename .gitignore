@@ -1,0 +1,24 @@
+# Binaries
+*.exe
+*.out
+/dist/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Config
+*.toml
+!*.schema.toml
+*.env
+*.env.local
+*.env.production
+*.env.development
+!*schema.env
+
+# Log files
+*.log
+
+# Temporary files
+/tmp/
+/*.cache/
+*.tmp
