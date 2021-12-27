@@ -1,61 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"os"
+	"log"
 
-	"github.com/MedzikUser/go-imgur"
-	"github.com/MedzikUser/go-imgur/cmd/imgur/config"
-	"github.com/mkideal/cli"
+	"github.com/MedzikUser/go-imgur/cmd/imgur/commands"
+	"github.com/spf13/cobra"
 )
 
+var rootCmd = &cobra.Command{
+	Use:   "imgur <cmd>",
+	Short: "Imgur API Cli",
+	Long:  "Cli for Imgur API",
+}
+
 func main() {
-	err := cli.Root(root,
-		cli.Tree(help),
-		cli.Tree(upload)).
-		Run(os.Args[1:])
+	rootCmd.AddCommand(commands.UploadCmd)
+	rootCmd.AddCommand(commands.DeleteCmd)
+
+	err := rootCmd.Execute()
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
-}
-
-var root = &cli.Command{
-	Desc: "Imgur CLI",
-}
-
-var help = cli.HelpCommand("Help Menu")
-
-func CreateClient() imgur.Client {
-	config := config.ParseConfig()
-
-	return imgur.Client{
-		HTTPClient: new(http.Client),
-		Imgur: imgur.Imgur{
-			ClientID: config.Client.ID,
-		},
-	}
-}
-
-type uploadT struct {
-	cli.Helper
-	Title string `cli:"title" usage:"image title"`
-}
-
-var upload = &cli.Command{
-	Name: "upload",
-	Desc: "Upload image to Imgur",
-	Argv: func() interface{} {
-		return new(uploadT)
-	},
-	Fn: func(ctx *cli.Context) error {
-		argv := ctx.Argv().(*uploadT)
-
-		CreateClient()
-
-		ctx.String("%s\n", argv.Title)
-
-		return nil
-	},
 }

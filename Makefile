@@ -5,7 +5,7 @@ GO         := go
 GORELEASER := goreleaser
 
 # build flags
-BUILD_FLAGS :=
+BUILD_FLAGS := -v
 
 build:
 	$(GO) mod tidy

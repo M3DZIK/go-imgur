@@ -2,16 +2,17 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/BurntSushi/toml"
 )
 
 type Config struct {
-	Client ConfigClient
+	Imgur ConfigImgur
 }
 
-type ConfigClient struct {
+type ConfigImgur struct {
 	ID string
 }
 
@@ -20,12 +21,12 @@ func ParseConfig() Config {
 
 	configDir, err := os.UserConfigDir()
 	if err != nil {
-		panic("Get config dir: " + err.Error())
+		log.Fatal("Get config dir: " + err.Error())
 	}
 
-	_, err = toml.DecodeFile(fmt.Sprintf("%s/imgur/config.toml", configDir), config)
+	_, err = toml.DecodeFile(fmt.Sprintf("%s/imgur/config.toml", configDir), &config)
 	if err != nil {
-		panic("Decode config file: " + err.Error())
+		log.Fatal("Decode config file: " + err.Error())
 	}
 
 	return config
