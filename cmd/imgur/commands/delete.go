@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/MedzikUser/go-imgur/cmd/imgur/utils"
@@ -18,6 +19,8 @@ var DeleteCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("Error delete image: " + err.Error())
 		}
+
+		fmt.Println("Deleted image!")
 
 		return nil
 	},

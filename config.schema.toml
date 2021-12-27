@@ -1,2 +1,8 @@
 [imgur]
 id = '0000000000000000'
+
+[discord]
+enable = true
+url = 'https://discord.com/api/webhooks/000000000000000/aaaaaaaaaaaaaaaaa'
+username = 'CDN'
+embedcolor = '1127128'

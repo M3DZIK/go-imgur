@@ -9,8 +9,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "imgur <cmd>",
-	Short: "Imgur API Cli",
-	Long:  "Cli for Imgur API",
+	Short: "Imgur API CLI",
+	Long:  "CLI for Imgur API",
 }
 
 func main() {

@@ -9,11 +9,19 @@ import (
 )
 
 type Config struct {
-	Imgur ConfigImgur
+	Imgur   ConfigImgur
+	Discord ConfigDiscord
 }
 
 type ConfigImgur struct {
 	ID string
+}
+
+type ConfigDiscord struct {
+	Enable     bool
+	URL        string
+	Username   string
+	EmbedColor string
 }
 
 func ParseConfig() Config {
