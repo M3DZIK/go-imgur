@@ -1,0 +1,41 @@
+project_name: pingbot
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - main: ./cmd/imgur
+
+    goos:
+    - linux
+    - windows
+    - darwin
+
+    goarch:
+      - amd64
+      - 386
+      - arm64
+
+    ldflags:
+      - -s -w
+      - -X main.version={{ .RawVersion }}
+
+archives:
+  - format: tar.xz
+
+    replacements:
+      386: i386
+
+    files:
+      - config.schema.toml
+      - README.md
+      - LICENSE
+
+checksum:
+  name_template: 'checksums.txt'
+
+  algorithm: sha256
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"

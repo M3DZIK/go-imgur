@@ -7,10 +7,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "unknow"
+
 var rootCmd = &cobra.Command{
-	Use:   "imgur <cmd>",
-	Short: "Imgur API CLI",
-	Long:  "CLI for Imgur API",
+	Use:     "imgur <cmd>",
+	Short:   "Imgur API CLI",
+	Long:    "CLI for Imgur API",
+	Version: version,
 }
 
 func main() {

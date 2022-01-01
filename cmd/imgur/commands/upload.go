@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/0xAX/notificator"
 	"github.com/MedzikUser/go-imgur"
 	"github.com/MedzikUser/go-imgur/cmd/imgur/config"
 	"github.com/MedzikUser/go-imgur/cmd/imgur/utils"
@@ -14,9 +15,11 @@ import (
 )
 
 var UploadCmd = &cobra.Command{
-	Use:   "upload <path to file or url>",
-	Short: "Upload image to Imgur",
-	Args:  cobra.MinimumNArgs(1),
+	Use:                   "upload <path to file or url>",
+	Short:                 "Upload image to Imgur",
+	Args:                  cobra.MinimumNArgs(1),
+	DisableFlagsInUseLine: true,
+	Example:               "imgur upload Pictures/Screenshot.png",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client := utils.CreateClient()
 
@@ -56,6 +59,12 @@ func printLink(data *imgur.ImageInfoData) {
 	if err != nil {
 		fmt.Println("Error copy link to clipboard: " + err.Error())
 	}
+
+	notify := notificator.New(notificator.Options{
+		AppName: "Imgur",
+	})
+
+	notify.Push("Uploaded!", url, "", notificator.UR_NORMAL)
 
 	config := config.ParseConfig()
 	if config.Discord.Enable {
