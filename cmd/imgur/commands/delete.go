@@ -20,16 +20,13 @@ var DeleteCmd = &cobra.Command{
 
 		_, _, err := client.DeleteImageUnAuthed(args[0])
 		if err != nil {
+			utils.Notify.Push("Error!", err.Error(), "", notificator.UR_CRITICAL)
 			log.Fatal("Error delete image: " + err.Error())
 		}
 
-		fmt.Println("Deleted image!")
+		fmt.Println("Image deleted!")
 
-		notify := notificator.New(notificator.Options{
-			AppName: "Imgur",
-		})
-
-		notify.Push("Deleted!", "", "", notificator.UR_NORMAL)
+		utils.Notify.Push("Deleted!", "", "", notificator.UR_NORMAL)
 
 		return nil
 	},

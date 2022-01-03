@@ -32,6 +32,7 @@ var UploadCmd = &cobra.Command{
 
 			data, _, err := client.UploadImageFromFile(args[0], "")
 			if err != nil {
+				utils.Notify.Push("Error!", err.Error(), "", notificator.UR_CRITICAL)
 				log.Fatal("Error upload image to Imgur: " + err.Error())
 			}
 
@@ -39,6 +40,7 @@ var UploadCmd = &cobra.Command{
 		} else {
 			data, _, err := client.UploadImageFromURL(args[0], "")
 			if err != nil {
+				utils.Notify.Push("Error!", err.Error(), "", notificator.UR_CRITICAL)
 				log.Fatal("Error upload image to Imgur: " + err.Error())
 			}
 
@@ -60,11 +62,7 @@ func printLink(data *imgur.ImageInfoData) {
 		fmt.Println("Error copy link to clipboard: " + err.Error())
 	}
 
-	notify := notificator.New(notificator.Options{
-		AppName: "Imgur",
-	})
-
-	notify.Push("Uploaded!", url, "", notificator.UR_NORMAL)
+	utils.Notify.Push("Uploaded!", url, "", notificator.UR_NORMAL)
 
 	config := config.ParseConfig()
 	if config.Discord.Enable {
