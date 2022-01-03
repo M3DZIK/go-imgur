@@ -14,7 +14,7 @@ import (
 )
 
 // Upload Image to Imgur
-//	info, status, err := client.UploadImage("https://abc/img", "url", "abc")
+//	info, status, err := client.UploadImage("https://example.com/example.png", "url", "abc")
 func (client *Client) UploadImage(img string, dtype string, album string) (*ImageInfoData, int, error) {
 	form := url.Values{}
 
@@ -53,6 +53,10 @@ func (client *Client) UploadImage(img string, dtype string, album string) (*Imag
 	err = dec.Decode(&i)
 	if err != nil {
 		return nil, -1, err
+	}
+
+	if i.Status >= 300 {
+		return nil, i.Status, errors.New("Imgur Failed with Status: " + strconv.Itoa(i.Status))
 	}
 
 	if !i.Success {

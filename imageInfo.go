@@ -46,6 +46,10 @@ func (client *Client) GetImageInfo(imageID string) (*ImageInfoData, int, error) 
 		return nil, -1, err
 	}
 
+	if i.Status >= 300 {
+		return nil, i.Status, errors.New("Imgur Failed with Status: " + strconv.Itoa(i.Status))
+	}
+
 	if !i.Success {
 		return nil, i.Status, errors.New("Imgur Failed with Status: " + strconv.Itoa(i.Status))
 	}
