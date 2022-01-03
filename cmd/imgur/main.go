@@ -18,6 +18,7 @@ var rootCmd = &cobra.Command{
 
 func main() {
 	rootCmd.AddCommand(commands.UploadCmd)
+	rootCmd.AddCommand(commands.InfoCmd)
 	rootCmd.AddCommand(commands.DeleteCmd)
 
 	err := rootCmd.Execute()
