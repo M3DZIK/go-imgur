@@ -27,15 +27,15 @@ var InfoCmd = &cobra.Command{
 			log.Fatal("Error get image info: " + err.Error())
 		}
 
-		fmt.Printf("ID            - %s\n", data.Data.ID)
-		fmt.Printf("URL           - %s\n", "https://cdn.magicuser.cf/"+data.Data.IDExt)
-		fmt.Printf("Views         - %d\n", data.Data.Views)
-		fmt.Printf("Size          - %s\n", u.Bytes(uint64(data.Data.Size)))
-		fmt.Printf("Height        - %d\n", data.Data.Height)
-		fmt.Printf("Width         - %d\n", data.Data.Width)
-		fmt.Printf("Type          - %s\n", data.Data.MimeType)
-		fmt.Printf("Upload Date   - %s\n", time.Unix(int64(data.Data.Datetime), 0).Format("2006-01-02 15:04:05 -0700"))
-		fmt.Printf("Bandwidth     - %s\n", u.Bytes(uint64(data.Data.Bandwidth)))
+		fmt.Printf("ID          - %s\n", data.Data.ID)
+		fmt.Printf("URL         - %s\n", "https://cdn.magicuser.cf/"+data.Data.IDExt)
+		fmt.Printf("Views       - %d\n", data.Data.Views)
+		fmt.Printf("Size        - %s\n", u.Bytes(uint64(data.Data.Size)))
+		fmt.Printf("Height      - %d\n", data.Data.Height)
+		fmt.Printf("Width       - %d\n", data.Data.Width)
+		fmt.Printf("Type        - %s\n", data.Data.MimeType)
+		fmt.Printf("Upload Date - %s\n", time.Unix(int64(data.Data.Datetime), 0).Format("2006-01-02 15:04:05 -0700"))
+		fmt.Printf("Bandwidth   - %s\n", u.Bytes(uint64(data.Data.Bandwidth)))
 
 		return nil
 	},
