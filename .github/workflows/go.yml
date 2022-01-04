@@ -12,11 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        go: [
-          1.15,
-          1.16,
-          1.17
-        ]
+        go: 1.17
       fail-fast: false
 
     steps:
@@ -89,7 +85,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.17
+          go-version: [1.17]
 
       - name: Setup Git
         run: |
@@ -98,7 +94,7 @@ jobs:
 
       - name: Go Mod Tidy
         run: |
-          go mod tidy -v
+          go mod tidy -v --go=1.17
           git add .
           git diff-index --quiet HEAD || git commit -m "go mod tidy"
 
