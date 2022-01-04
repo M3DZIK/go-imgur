@@ -31,17 +31,6 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Get Rate Limits
-      run: |
-        mkdir -p ~/.config/imgur
-        echo [imgur]\nid = "'$IMGUR_CLIENT_ID'"\n[discord]\nenable = false > ~/.config/imgur/config.toml
-        make
-        ./imgur.out credits
-      env:
-        IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
-        IMGUR_CLIENT_SECRET: ${{ secrets.IMGUR_CLIENT_SECRET }}
-        IMGUR_REFRESH_TOKEN: ${{ secrets.IMGUR_REFRESH_TOKEN }}
-
     - name: Test
       run: go test -v ./...
       env:
