@@ -33,12 +33,8 @@ jobs:
 
     - name: Get Rate Limits
       run: |
-        mkdir -p .config/imgur
-        echo "[imgur]
-id = '$IMGUR_CLIENT_ID'
-
-[discord]
-enable = false" > .config/imgur/config.toml
+        mkdir -p ~/.config/imgur
+        echo [imgur]\nid = "'$IMGUR_CLIENT_ID'"\n[discord]\nenable = false > ~/.config/imgur/config.toml
         make
         ./imgur.out credits
       env:
