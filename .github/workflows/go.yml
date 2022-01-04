@@ -31,6 +31,11 @@ jobs:
     - name: Build
       run: go build -v ./...
 
+    - name: Get Rate Limits
+      run: |
+        make
+        ./imgur.out credits
+
     - name: Test
       run: go test -v ./...
       env:

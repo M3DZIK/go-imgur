@@ -16,3 +16,10 @@ snapshot:
 
 clean:
 	$(GO) clean
+	rm -f ${BINARY_OUT}
+
+install:
+	cp ${BINARY_OUT} /usr/bin/imgur
+
+uninstall:
+	rm -f /usr/bin/imgur
