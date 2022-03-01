@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Clone Repository (1)
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -54,7 +54,7 @@ jobs:
           go-version: 1.17
 
       - name: Clone Repository (2)
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
