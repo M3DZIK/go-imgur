@@ -8,7 +8,7 @@ require (
 	github.com/MedzikUser/go-utils v1.0.0
 	github.com/atotto/clipboard v0.1.4
 	github.com/gtuk/discordwebhook v1.0.0
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.4.0
 )
 
 require (
