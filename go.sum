@@ -2,6 +2,8 @@ github.com/0xAX/notificator v0.0.0-20220220101646-ee9b8921e557 h1:l6surSnJ3RP4qA
 github.com/0xAX/notificator v0.0.0-20220220101646-ee9b8921e557/go.mod h1:sTrmvD/TxuypdOERsDOS7SndZg0rzzcCi1b6wQMXUYM=
 github.com/BurntSushi/toml v0.4.1 h1:GaI7EiDXDRfa8VshkTj7Fym7ha+y8/XxIgD2okUIjLw=
 github.com/BurntSushi/toml v0.4.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
+github.com/BurntSushi/toml v1.0.0 h1:dtDWrepsVPfW9H/4y7dDgFc2MBUSeJhlaDtK13CxFlU=
+github.com/BurntSushi/toml v1.0.0/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/MedzikUser/go-github-selfupdate v1.3.1/go.mod h1:vq1/KNWXN7R/aKZFD5p2rsIdQ+2FSXnlIts1QHEZCM4=
 github.com/MedzikUser/go-utils v1.0.0 h1:+fq8rTY1Smm9u/FSWYBYi6fREhctbjNcuQR59j+XXbQ=
 github.com/MedzikUser/go-utils v1.0.0/go.mod h1:xP+KbYBL9TESTLP4vWnvIT0v+uq5reR4l5S7Nq4eeKo=
