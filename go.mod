@@ -7,7 +7,7 @@ require (
 	github.com/BurntSushi/toml v1.2.0
 	github.com/MedzikUser/go-utils v1.0.0
 	github.com/atotto/clipboard v0.1.4
-	github.com/gtuk/discordwebhook v1.0.1
+	github.com/gtuk/discordwebhook v1.0.2
 	github.com/spf13/cobra v1.5.0
 )
 
